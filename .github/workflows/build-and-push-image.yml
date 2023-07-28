@@ -14,7 +14,7 @@ on:
 env:
   REGISTRY: ghcr.io # Using GH Packages for hosting public images
   IMAGE_NAME: ${{ github.repository }}
-  LATEST: ${{ fromJSON('["false", "true"]')[ github.ref_name == 'master' || inputs && inputs.ref == 'master' ] }}
+  LATEST: ${{ (github.ref_name == 'master' || inputs && inputs.ref == 'master')  && 'true' || 'false' }}
 
 jobs:
   build-push-image:
