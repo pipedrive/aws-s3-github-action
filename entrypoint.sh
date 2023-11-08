@@ -119,16 +119,16 @@ while IFS= read -r source; do
     if [ -n "$source" ]; then
         if [ "$COMMAND" == "cp" ] || [ "$COMMAND" == "mv" ] || [ "$COMMAND" == "sync" ]; then
             if [ -n "$INPUT_FLAGS" ]; then
-                cmd="aws s3 $COMMAND $source $INPUT_DESTINATION $INPUT_FLAGS"
+                cmd="aws s3 $COMMAND \"$source\" $INPUT_DESTINATION $INPUT_FLAGS"
                 echo "Executing command: $cmd"
                 $cmd
             else
-                cmd="aws s3 $COMMAND $source $INPUT_DESTINATION"
+                cmd="aws s3 $COMMAND \"$source\" $INPUT_DESTINATION"
                 echo "Executing command: $cmd"
                 $cmd
             fi
         else
-            cmd="aws s3 $COMMAND $source $INPUT_FLAGS"
+            cmd="aws s3 $COMMAND \"$source\" $INPUT_FLAGS"
             echo "Executing command: $cmd"
             $cmd
         fi
